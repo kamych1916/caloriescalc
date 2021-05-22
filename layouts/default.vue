@@ -1,11 +1,9 @@
 <template>
   <div>
-    <div>
-      <Header />
-      <slide-y-down-transition :duration="700">
-        <Nuxt />
-      </slide-y-down-transition>
-    </div>
+    <Header />
+    <slide-y-down-transition :duration="700">
+      <Nuxt />
+    </slide-y-down-transition>
   </div>
 </template>
 

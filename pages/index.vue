@@ -57,24 +57,28 @@
               </div>
               <div class="row mt-10">
                 <div class="col-lg my-10">
-                  <el-input placeholder="Возраст" v-model="age"></el-input>
+                  <el-input placeholder="Возраст" v-model="age"> </el-input>
                 </div>
                 <div class="col-lg my-10">
-                  <el-input placeholder="Вес" v-model="weight"></el-input>
+                  <el-input placeholder="Вес" v-model="weight">
+                    <span style="color: rgb(198, 85, 16)" slot="suffix">
+                      кг
+                    </span>
+                  </el-input>
                 </div>
                 <div class="col-lg my-10">
-                  <el-input placeholder="Рост" v-model="height"></el-input>
+                  <el-input placeholder="Рост" v-model="height">
+                    <span style="color: rgb(198, 85, 16)" slot="suffix">
+                      см
+                    </span>
+                  </el-input>
                 </div>
               </div>
               <div class="text-white fs-28 mt-10">Уровень активности</div>
               <div class="row radio-types-circle mt-10">
                 <div class="col mr-0 pr-0 d-flex align-items-center">
                   <label class="custom-radio">
-                    <input
-                      type="radio"
-                      value="male"
-                      v-model="picked_activity"
-                    />
+                    <input type="radio" value="low" v-model="picked_activity" />
                     <span></span>
                   </label>
                   <div
@@ -88,7 +92,11 @@
                     style="background: rgb(198, 85, 16);"
                   ></div>
                   <label class="custom-radio">
-                    <input type="radio" value="kek" v-model="picked_activity" />
+                    <input
+                      type="radio"
+                      value="middle"
+                      v-model="picked_activity"
+                    />
                     <span></span>
                   </label>
                   <div
@@ -102,7 +110,11 @@
                     style="background: rgb(198, 85, 16);"
                   ></div>
                   <label class="custom-radio">
-                    <input type="radio" value="lol" v-model="picked_activity" />
+                    <input
+                      type="radio"
+                      value="high"
+                      v-model="picked_activity"
+                    />
                     <span></span>
                   </label>
                   <div
@@ -118,7 +130,7 @@
                   <label class="custom-radio">
                     <input
                       type="radio"
-                      value="cheburek"
+                      value="extra"
                       v-model="picked_activity"
                     />
                     <span></span>
@@ -143,14 +155,14 @@
                 </div>
                 <div class="col ml-0 pl-0 d-flex">
                   <div class="w-100"></div>
-                  <div class="fs-14 radio-title">Хардкор</div>
+                  <div class="fs-14 radio-title">Экстра</div>
                 </div>
               </div>
               <div class="text-white fs-28 mt-20">Цель</div>
               <div class="row radio-types mt-10">
                 <div class="col-lg">
                   <label class="custom-radio w-100 ">
-                    <input type="radio" value="male" v-model="picked_deal" />
+                    <input type="radio" value="lose" v-model="picked_deal" />
                     <span class="radio-btn w-100 py-30">
                       <h4>похудеть</h4>
                     </span>
@@ -158,15 +170,11 @@
                 </div>
                 <div class="col-lg">
                   <label class="custom-radio w-100 ">
-                    <input type="radio" value="female" v-model="picked_deal" />
-                    <span class="radio-btn w-100 py-30">
-                      <h4>тонус</h4>
-                    </span>
-                  </label>
-                </div>
-                <div class="col-lg">
-                  <label class="custom-radio w-100 ">
-                    <input type="radio" value="female" v-model="picked_deal" />
+                    <input
+                      type="radio"
+                      value="maintain"
+                      v-model="picked_deal"
+                    />
                     <span class="radio-btn w-100 py-30">
                       <h4>удержать</h4>
                     </span>
@@ -174,7 +182,7 @@
                 </div>
                 <div class="col-lg">
                   <label class="custom-radio w-100 ">
-                    <input type="radio" value="female" v-model="picked_deal" />
+                    <input type="radio" value="gain" v-model="picked_deal" />
                     <span class="radio-btn w-100 py-30">
                       <h4>набрать</h4>
                     </span>
@@ -185,8 +193,8 @@
                 <div class="col d-flex justify-content-between ">
                   <div>почистить</div>
                   <button
-                    class="el-button el--button-primary text-white px-50"
-                    style="background: black; border: none"
+                    class="el-button px-50"
+                    style="background: #222;; border: none; color: #fff"
                     @click="show = !show"
                   >
                     рассчитать
@@ -249,7 +257,8 @@ export default {
       weight: "",
       height: "",
       show: true,
-      picked_deal: "kek"
+      picked_deal: "",
+      picked_activity: ""
     };
   }
 };
