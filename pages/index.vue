@@ -1,213 +1,165 @@
 <template>
   <section class="main">
-    <slide-x-left-transition>
-      <div class="row mx-0" v-show="show">
-        <div class="col-lg px-0">
-          <div
-            class="main-title text-center d-flex justify-content-center align-items-center"
-          >
-            <div>
-              <i
-                class="bi bi-calculator"
-                style="font-size: 3rem; color: rgb(245, 125, 52);"
-              ></i>
-              <h1 style="font-size: 3rem; line-height: 1;">
-                калькулятор <br />
-                калорий
-              </h1>
-              <br />
-              <span>
-                Рассчитайте оптимальное соотношение калорий для вашего тела.<br />
-                Введите свой возраст, рост, вес, пол и уровень активности.
-              </span>
-            </div>
-            <div class="triangle d-none d-sm-flex"></div>
+    <div class="row mx-0">
+      <div v-show="titleBlock" class="col-lg px-0">
+        <div
+          class="main-title text-center d-flex justify-content-center align-items-center"
+        >
+          <div>
+            <i
+              class="bi bi-calculator"
+              style="font-size: 3rem; color: rgb(245, 125, 52);"
+            ></i>
+            <h1 style="font-size: 3rem; line-height: 1;">
+              калькулятор <br />
+              калорий
+            </h1>
+            <br />
+            <span>
+              Рассчитайте оптимальное соотношение калорий для вашего тела.<br />
+              Введите свой возраст, рост, вес, пол и уровень активности.
+            </span>
           </div>
+          <div class="triangle d-none d-sm-flex"></div>
         </div>
-        <div class="col-lg px-0">
+      </div>
+      <slide-x-right-transition>
+        <div class="col-lg px-0" v-show="titleBlock || answerBlock">
           <div
             class="d-flex justify-content-center align-items-center py-20"
             style="min-height: 100vh; background-color: rgb(245, 125, 52)"
           >
-            <div style="width:80%;">
-              <div class="text-white fs-28 mt-40">
-                Характеристики вашего тела
-              </div>
-              <div class="row radio-types mt-10">
-                <div class="col-lg">
-                  <label class="custom-radio w-100 ">
-                    <input type="radio" value="male" v-model="picked_gender" />
-                    <span class="radio-btn w-100 py-30">
-                      <h3>мужчина</h3>
-                    </span>
-                  </label>
-                </div>
-                <div class="col-lg">
-                  <label class="custom-radio w-100 ">
-                    <input
-                      type="radio"
-                      value="female"
-                      v-model="picked_gender"
-                    />
-                    <span class="radio-btn w-100 py-30">
-                      <h3>женщина</h3>
-                    </span>
-                  </label>
-                </div>
-              </div>
-              <div class="row mt-10">
-                <div class="col-lg my-10">
-                  <el-input placeholder="Возраст" v-model="age"> </el-input>
-                </div>
-                <div class="col-lg my-10">
-                  <el-input placeholder="Вес" v-model="weight">
-                    <span style="color: rgb(198, 85, 16)" slot="suffix">
-                      кг
-                    </span>
-                  </el-input>
-                </div>
-                <div class="col-lg my-10">
-                  <el-input placeholder="Рост" v-model="height">
-                    <span style="color: rgb(198, 85, 16)" slot="suffix">
-                      см
-                    </span>
-                  </el-input>
-                </div>
-              </div>
-              <div class="text-white fs-28 mt-10">Уровень активности</div>
-              <div class="row radio-types-circle mt-10">
-                <div class="col mr-0 pr-0 d-flex align-items-center">
-                  <label class="custom-radio">
-                    <input type="radio" value="low" v-model="picked_activity" />
-                    <span></span>
-                  </label>
-                  <div
-                    class="w-100 py-1"
-                    style="background: rgb(198, 85, 16);"
-                  ></div>
-                </div>
-                <div class="col mx-0 px-0 d-flex align-items-center">
-                  <div
-                    class="w-50 py-1"
-                    style="background: rgb(198, 85, 16);"
-                  ></div>
-                  <label class="custom-radio">
-                    <input
-                      type="radio"
-                      value="middle"
-                      v-model="picked_activity"
-                    />
-                    <span></span>
-                  </label>
-                  <div
-                    class="w-100 py-1"
-                    style="background: rgb(198, 85, 16);"
-                  ></div>
-                </div>
-                <div class="col mx-0 px-0 d-flex align-items-center">
-                  <div
-                    class="w-100 py-1"
-                    style="background: rgb(198, 85, 16);"
-                  ></div>
-                  <label class="custom-radio">
-                    <input
-                      type="radio"
-                      value="high"
-                      v-model="picked_activity"
-                    />
-                    <span></span>
-                  </label>
-                  <div
-                    class="w-50 py-1"
-                    style="background: rgb(198, 85, 16);"
-                  ></div>
-                </div>
-                <div class="col ml-0 pl-0 d-flex align-items-center">
-                  <div
-                    class="w-100 py-1"
-                    style="background: rgb(198, 85, 16);"
-                  ></div>
-                  <label class="custom-radio">
-                    <input
-                      type="radio"
-                      value="extra"
-                      v-model="picked_activity"
-                    />
-                    <span></span>
-                  </label>
-                </div>
-              </div>
-              <div class="row ">
-                <div class="col">
-                  <div class="fs-14 radio-title">Слабое</div>
-                </div>
-                <div class="col mx-0 px-0 d-flex">
-                  <div class="w-50"></div>
-                  <div style="margin-left: -20px" class="fs-14 radio-title">
-                    Среднее
-                  </div>
-                  <div class="w-100"></div>
-                </div>
-                <div class="col mx-0 px-0 d-flex">
-                  <div class="w-100"></div>
-                  <div class="fs-14 radio-title">Высокое</div>
-                  <div class="w-50"></div>
-                </div>
-                <div class="col ml-0 pl-0 d-flex">
-                  <div class="w-100"></div>
-                  <div class="fs-14 radio-title">Экстра</div>
-                </div>
-              </div>
-              <div class="text-white fs-28 mt-20">Цель</div>
-              <div class="row radio-types mt-10">
-                <div class="col-lg">
-                  <label class="custom-radio w-100 ">
-                    <input type="radio" value="lose" v-model="picked_deal" />
-                    <span class="radio-btn w-100 py-30">
-                      <h4>похудеть</h4>
-                    </span>
-                  </label>
-                </div>
-                <div class="col-lg">
-                  <label class="custom-radio w-100 ">
-                    <input
-                      type="radio"
-                      value="maintain"
-                      v-model="picked_deal"
-                    />
-                    <span class="radio-btn w-100 py-30">
-                      <h4>удержать</h4>
-                    </span>
-                  </label>
-                </div>
-                <div class="col-lg">
-                  <label class="custom-radio w-100 ">
-                    <input type="radio" value="gain" v-model="picked_deal" />
-                    <span class="radio-btn w-100 py-30">
-                      <h4>набрать</h4>
-                    </span>
-                  </label>
-                </div>
-              </div>
-              <div class="row mt-20">
-                <div class="col d-flex justify-content-between ">
-                  <div>почистить</div>
-                  <button
-                    class="el-button px-50"
-                    style="background: #222;; border: none; color: #fff"
-                    @click="show = !show"
-                  >
-                    рассчитать
-                  </button>
-                </div>
-              </div>
-              <!-- <button @click="show = !show">lol</button> -->
-            </div>
+            <Inputs @calculate="calculate" />
           </div>
         </div>
-      </div>
-    </slide-x-left-transition>
-    <slide-x-right-transition>
+      </slide-x-right-transition>
+      <slide-x-right-transition>
+        <div class="col-lg px-0" v-show="answerBlock">
+          <div
+            class="main-title  d-flex justify-content-center align-items-center"
+          >
+            <div class="row" style="width:80%;">
+              <div class="col-lg ">
+                <div class="d-flex align-items-end">
+                  <h1 style="font-size: 3rem; line-height: 1;">
+                    <client-only>
+                      <animated-number
+                        :value="caloriesResult"
+                        :formatValue="formater"
+                        :duration="700"
+                      />
+                    </client-only>
+                  </h1>
+                  <h2 class="fs-22">
+                    &nbsp; ккал/день
+                  </h2>
+                </div>
+                <span class="text-light fs-14">
+                  Рекомендуемое количество <b> калорий в день</b>
+                </span>
+              </div>
+              <div class="col-lg">
+                <div
+                  class="fs-22 pb-5 mb-5"
+                  style="border-bottom: 6px solid #000"
+                >
+                  МИКРОЭЛЕМЕНТЫ
+                </div>
+                <div
+                  class="py-10 d-flex justify-content-between"
+                  style="border-bottom: 1px solid #ccc"
+                >
+                  <span class="fs-14 text-light">
+                    Белки
+                  </span>
+                  <span class="fs-14 text-light">
+                    <b>
+                      <client-only>
+                        <animated-number
+                          :value="proteinsResult"
+                          :formatValue="formater"
+                          :duration="1000"
+                        />
+                      </client-only>
+                      г
+                    </b>
+                    /
+                    <client-only>
+                      <animated-number
+                        :value="pProteins"
+                        :formatValue="formater"
+                        :duration="1000"
+                      />
+                    </client-only>
+                    %
+                  </span>
+                </div>
+                <div
+                  class="py-10 d-flex justify-content-between"
+                  style="border-bottom: 1px solid #ccc"
+                >
+                  <span class="fs-14 text-light">
+                    Жиры
+                  </span>
+                  <span class="fs-14 text-light">
+                    <b>
+                      <client-only>
+                        <animated-number
+                          :value="fatsResult"
+                          :formatValue="formater"
+                          :duration="1000"
+                        />
+                      </client-only>
+                      г
+                    </b>
+                    /
+                    <client-only>
+                      <animated-number
+                        :value="pFats"
+                        :formatValue="formater"
+                        :duration="1000"
+                      />
+                    </client-only>
+                    %
+                  </span>
+                </div>
+                <div
+                  class="py-10 d-flex justify-content-between"
+                  style="border-bottom: 1px solid #ccc"
+                >
+                  <span class="fs-14 text-light">
+                    Углеводы
+                  </span>
+                  <span class="fs-14 text-light">
+                    <b>
+                      <client-only>
+                        <animated-number
+                          :value="carbohydratesResult"
+                          :formatValue="formater"
+                          :duration="1000"
+                        />
+                      </client-only>
+                      г
+                    </b>
+                    /
+                    <client-only>
+                      <animated-number
+                        :value="pCarbohydrates"
+                        :formatValue="formater"
+                        :duration="1000"
+                      />
+                    </client-only>
+                    %
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="triangle-left d-none d-sm-flex"></div>
+          </div>
+        </div>
+      </slide-x-right-transition>
+    </div>
+    <!-- <slide-x-right-transition>
       <div class="row mx-0" v-show="!show">
         <div class="col-lg px-0">
           <div
@@ -240,33 +192,61 @@
           </div>
         </div>
       </div>
-    </slide-x-right-transition>
+    </slide-x-right-transition> -->
   </section>
 </template>
 
 <script>
 import { SlideXLeftTransition, SlideXRightTransition } from "vue2-transitions";
+import AnimatedNumber from "animated-number-vue";
 export default {
   components: {
     SlideXLeftTransition,
-    SlideXRightTransition
+    SlideXRightTransition,
+    AnimatedNumber
   },
   data() {
     return {
-      age: "",
-      weight: "",
-      height: "",
-      show: true,
-      picked_deal: "",
-      picked_activity: ""
+      titleBlock: true,
+      answerBlock: false,
+      caloriesResult: 0,
+      proteinsResult: 0,
+      fatsResult: 0,
+      carbohydratesResult: 0,
+      pProteins: 0,
+      pFats: 0,
+      pCarbohydrates: 0
     };
+  },
+  methods: {
+    calculate(data) {
+      this.titleBlock = false;
+      this.answerBlock = true;
+
+      this.caloriesResult = data.calories;
+
+      this.proteinsResult = data.proteins;
+      this.fatsResult = data.fats;
+      this.carbohydratesResult = data.carbohydrates;
+
+      let sum =
+        this.proteinsResult + this.fatsResult + this.carbohydratesResult;
+
+      this.pProteins = Math.trunc(100 * (this.proteinsResult / sum));
+      this.pFats = Math.trunc(100 * (this.fatsResult / sum));
+      this.pCarbohydrates = Math.trunc(100 * (this.carbohydratesResult / sum));
+    },
+
+    formater(value) {
+      return Number(value).toFixed(0);
+    }
   }
 };
 </script>
 
 <style lang="scss">
 .main {
-  overflow-y: hidden !important;
+  overflow: hidden !important;
   height: 100%;
   width: 100%;
   .main-title {
@@ -293,47 +273,8 @@ export default {
       border-bottom: 10px solid transparent;
     }
   }
-  .radio-types-circle {
-    .custom-radio {
-      display: flex;
-      cursor: pointer;
-      user-select: none;
-      text-align: left;
-      input {
-        display: none;
-        & + span {
-          display: block;
-          position: relative;
-          &:before {
-            content: "";
-            display: block;
-            border-radius: 100%;
-            width: 30px;
-            height: 30px;
-            border: 1px solid rgb(198, 85, 16);
-            background: transparent;
-          }
-          &:after {
-            content: "";
-            display: block;
-            width: 19px;
-            height: 19px;
-            background: #222;
-            position: absolute;
-            border-radius: 100%;
-            top: 5px;
-            left: 5.7px;
-            opacity: 0;
-            transform: scale(0, 0);
-            transition: all 0.2s cubic-bezier(0.64, 0.57, 0.67, 1.53);
-          }
-        }
-        &:checked + span:after {
-          opacity: 1;
-          transform: scale(1, 1);
-        }
-      }
-    }
+  @media screen and (max-width: 1024px) {
+    overflow: auto !important;
   }
 }
 </style>

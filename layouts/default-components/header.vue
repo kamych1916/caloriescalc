@@ -5,7 +5,7 @@
         to="/"
         class="d-flex align-items-center fs-22 text-white cursor text-black"
       >
-        CaloriesCalc
+        YouCalc
       </nuxt-link>
       <div class="d-none d-sm-flex align-items-center">
         <nuxt-link to="/" class="px-20 text-white cursor text-black">
