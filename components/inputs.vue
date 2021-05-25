@@ -182,9 +182,6 @@ export default {
         } else if (this.data.picked_deal === "gain") {
           result = result + result * 0.3;
         }
-        // let proteins = result / 6 / 4;
-        // let fats = result / 6 / 9;
-        // let carbohydrates = ((result / 6) * 4) / 4;
         let proteins = (result * 0.3) / 6.2;
         let fats = (result * 0.3) / 8;
         let carbohydrates = (result * 0.4) / 4;
