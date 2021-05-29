@@ -22,6 +22,8 @@ if (!firebase.apps.length) {
 
 const usersMedications = db;
 
+export const auth = firebase.auth();
+
 export const createMeds = med => {
   return usersMedications.add(med);
 };

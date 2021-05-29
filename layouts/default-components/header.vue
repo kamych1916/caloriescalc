@@ -3,17 +3,17 @@
     <div class="container d-flex justify-content-between ">
       <nuxt-link
         to="/"
-        class="d-flex align-items-center fs-22 text-white cursor text-black"
+        class="d-flex align-items-center fs-22 cursor text-black"
       >
         YouCalc
       </nuxt-link>
       <div class="d-none d-sm-flex align-items-center">
-        <nuxt-link to="/" class="px-20 text-white cursor text-black">
+        <nuxt-link to="/" class="px-20 cursor text-black">
           Журнал
         </nuxt-link>
-        <nuxt-link to="/" class="px-20 text-white cursor text-black">
+        <div @click="checkAccess()" class="px-20 cursor">
           Аккаунт
-        </nuxt-link>
+        </div>
       </div>
       <div class="sidebarToggle text-white" @click="eventSidebar()">
         <i class="bi bi-list"></i>
@@ -33,6 +33,12 @@
             <nuxt-link to="/" class="px-20 text-white cursor py-20">
               Аккаунт
             </nuxt-link>
+            <div v-if="loggedIn" class="px-20 text-white cursor py-20">
+              Выход
+            </div>
+            <div else class="px-20 text-white cursor py-20">
+              Непонятно
+            </div>
           </div>
         </div>
       </div>
@@ -42,11 +48,19 @@
 </template>
 
 <script>
+import { auth } from "@/plugins/firebase";
+import Cookies from "js-cookie";
+
 export default {
   data() {
     return {
-      showSidebar: false
+      showSidebar: false,
+      loggedIn: false,
+      uid: null
     };
+  },
+  mounted() {
+    this.setupFirebase();
   },
   methods: {
     eventSidebar() {
@@ -57,6 +71,27 @@ export default {
         } else {
           document.body.style.overflow = "auto";
         }
+      }
+    },
+    setupFirebase() {
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          auth.currentUser
+            .getIdToken(true)
+            .then(token => Cookies.set("access_token", token));
+          this.loggedIn = true;
+          this.uid = user.uid;
+        } else {
+          Cookies.remove("access_token");
+          this.loggedIn = false;
+        }
+      });
+    },
+    checkAccess() {
+      if (this.loggedIn) {
+        this.$router.push("/account/" + this.uid);
+      } else {
+        this.$router.push("/account/login");
       }
     }
   }
