@@ -17,28 +17,27 @@ if (!firebase.apps.length) {
   db = firebase
     .initializeApp(firebaseConfig)
     .firestore()
-    .collection("medications");
+    .collection("products");
 }
-
-const usersMedications = db;
 
 export const auth = firebase.auth();
 
 export const createMeds = med => {
-  return usersMedications.add(med);
+  return db.doc("mushrooms").update(med);
 };
 
 export const getMeds = async id => {
-  const med = await usersMedications.doc(id).get();
+  const med = await db.doc(id).get();
+  console.log(med);
   return med.exists ? med.data() : null;
 };
 
 export const updateMeds = (id, med) => {
-  return usersMedications.doc(id).update(med);
+  return db.doc(id).update(med);
 };
 
 export const deleteMeds = id => {
-  return usersMedications.doc(id).delete();
+  return db.doc(id).delete();
 };
 
 export const useLoadMeds = () => {
