@@ -95,19 +95,9 @@ body {
   height: auto;
   border: 1px solid rgb(198, 85, 16);
   background-color: transparent;
-  border-radius: 25px;
+  // border-radius: 25px;
   color: #000;
-  &:hover {
-    border: 1px solid rgb(198, 85, 16);
-  }
-  &:active {
-    background-color: #fff;
-    border: 1px solid #fff;
-  }
-  &:focus {
-    background-color: #fff;
-    border: 1px solid #fff;
-  }
+
   &::placeholder {
     color: rgb(198, 85, 16);
   }

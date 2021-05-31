@@ -22,14 +22,29 @@ if (!firebase.apps.length) {
 
 export const auth = firebase.auth();
 
-export const createMeds = med => {
-  return db.doc("mushrooms").update(med);
+export const createProducts = (categorie, product) => {
+  return db.doc(categorie).update(product);
 };
 
-export const getMeds = async id => {
+export const createCategorie = categorie => {
+  db.doc(categorie).set({});
+};
+
+export const getProducts = async id => {
   const med = await db.doc(id).get();
-  console.log(med);
   return med.exists ? med.data() : null;
+};
+
+export const getCategories = () => {
+  let categs = [];
+  db.get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        categs.push(doc.id);
+      });
+    })
+    .catch(error => alert("🤕" + error));
+  return categs;
 };
 
 export const updateMeds = (id, med) => {

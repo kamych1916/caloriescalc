@@ -80,9 +80,9 @@ export default {
       this.titleBlock = false;
       this.answerBlock = true;
 
-      getMeds("89GMS1wG4XmLkfyqsrCH").then(data => {
-        console.log(data);
-      });
+      // getMeds("89GMS1wG4XmLkfyqsrCH").then(data => {
+      //   console.log(data);
+      // });
       this.calResData = data;
     }
   }

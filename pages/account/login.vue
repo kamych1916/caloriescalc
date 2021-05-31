@@ -32,7 +32,7 @@
 
         <div class="pt-10">
           <button
-            class="el-button el-button--warning is-round py-12 w-100"
+            class="el-button el-button--warning py-12 w-100"
             type="submit"
           >
             Войти

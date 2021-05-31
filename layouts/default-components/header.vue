@@ -5,17 +5,53 @@
         to="/"
         class="d-flex align-items-center fs-22 cursor text-black"
       >
-        YouCalc
+        youcalories
       </nuxt-link>
-      <div class="d-none d-sm-flex align-items-center">
-        <nuxt-link to="/" class="px-20 cursor text-black">
+      <div class="d-flex align-items-center">
+        <!-- <nuxt-link to="/" class="px-20 cursor text-black">
           Журнал
-        </nuxt-link>
-        <div @click="checkAccess()" class="px-20 cursor">
-          Аккаунт
-        </div>
+        </nuxt-link> -->
+        <!-- <div @click="checkAccess()" v-if="!isLogin" class="px-20 cursor">
+          <i class="bi bi-person-circle mr-10"></i>
+          Войти
+        </div> -->
+
+        <el-button
+          v-if="!loggedIn"
+          @click="checkAccess()"
+          type="text"
+          class="text-black"
+        >
+          <i class="bi bi-person-circle"></i>
+          <span class="ml-10">Войти</span>
+        </el-button>
+        <el-popover v-else width="160" placement="top" class="ml-10">
+          <div>
+            <nuxt-link :to="'/account/' + this.uid">
+              <div class="w-100 my-10" style="color: rgb(245, 125, 52)">
+                Расчет калорий в день
+              </div>
+            </nuxt-link>
+            <nuxt-link v-if="isAdmin" to="/account/admin">
+              <div class="w-100 my-10" style="color: rgb(245, 125, 52)">
+                Панель админа
+              </div>
+            </nuxt-link>
+            <div
+              class="pt-10 w-100 cursor"
+              style="border-top: 1px solid #ccc;"
+              @click="signOut()"
+            >
+              Выйти
+            </div>
+          </div>
+          <el-button slot="reference" type="text" class="text-black">
+            <i class="bi bi-person-circle"></i>
+            <span class="ml-10">Аккаунт</span>
+          </el-button>
+        </el-popover>
       </div>
-      <div class="sidebarToggle text-white" @click="eventSidebar()">
+      <!-- <div class="sidebarToggle text-white" @click="eventSidebar()">
         <i class="bi bi-list"></i>
       </div>
       <div :class="[showSidebar ? 'sidebarActive' : '', 'sidebar']">
@@ -42,7 +78,7 @@
           </div>
         </div>
       </div>
-      <div class="backdrop" v-if="showSidebar" @click="eventSidebar()"></div>
+      <div class="backdrop" v-if="showSidebar" @click="eventSidebar()"></div> -->
     </div>
   </header>
 </template>
@@ -56,7 +92,8 @@ export default {
     return {
       showSidebar: false,
       loggedIn: false,
-      uid: null
+      uid: null,
+      isAdmin: false
     };
   },
   mounted() {
@@ -81,6 +118,12 @@ export default {
             .then(token => Cookies.set("access_token", token));
           this.loggedIn = true;
           this.uid = user.uid;
+          if (
+            user.uid == "oRUuocif00RiDEf4DCJhg4bkEtW2" ||
+            user.uid == "ExfsnQeLtrdHIDp93tx0Lrx66p83"
+          ) {
+            this.isAdmin = true;
+          }
         } else {
           Cookies.remove("access_token");
           this.loggedIn = false;
@@ -93,7 +136,19 @@ export default {
       } else {
         this.$router.push("/account/login");
       }
+    },
+    signOut() {
+      auth.signOut().then(() => {
+        this.$router.push("/");
+      });
     }
+    // changeBtnLogin() {
+    //   if (this.getCookie("session_token")) {
+    //     this.isLogin = true;
+    //   } else {
+    //     this.isLogin = false;
+    //   }
+    // }
   }
 };
 </script>
