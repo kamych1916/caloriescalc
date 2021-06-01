@@ -63,6 +63,10 @@ body {
   color: red;
 }
 
+.text-orange {
+  color: orange;
+}
+
 .text-black {
   color: black;
 }
@@ -73,6 +77,12 @@ body {
     cursor: pointer;
     text-decoration: underline;
   }
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 70px;
 }
 
 .el-breadcrumb__inner {

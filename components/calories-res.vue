@@ -1,6 +1,6 @@
 <template>
   <div class="row d-flex">
-    <div class="col-lg ">
+    <div class="col-lg">
       <div class="d-flex align-items-end">
         <h1 style="font-size: 3rem; line-height: 1;">
           <client-only>

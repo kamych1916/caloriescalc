@@ -1,16 +1,15 @@
 <template>
   <div class="my-100 container">
     <div>
-      <!-- <button class="el-button" @click="signOut">выход</button> -->
       <div
-        class="auth-template my-30 py-20 w-100"
+        class="card-temp my-30 py-20 w-100"
         style="background-color: rgb(245, 125, 52)"
       >
         <h2>
           Панель Администратора
         </h2>
       </div>
-      <div class="auth-template my-30 w-100">
+      <div class="card-temp my-30 w-100">
         <h2>Создание новой категории:</h2>
         <div class="row">
           <div class="col-lg">
@@ -38,7 +37,7 @@
           </div>
         </div>
       </div>
-      <div class="auth-template my-30 w-100">
+      <div class="card-temp my-30 w-100">
         <h2>Создание нового продукта:</h2>
         <div class="row my-10">
           <div class="col-lg">

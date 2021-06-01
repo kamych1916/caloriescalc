@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="auth-template mt-100">
+    <div class="card-temp mt-100">
       <form @submit.prevent="signUp">
         <h3>Регистрация</h3>
 

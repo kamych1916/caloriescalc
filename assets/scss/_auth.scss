@@ -1,9 +1,9 @@
-.auth-template {
+.card-temp {
   width: 40%;
   margin: 0 auto;
   padding: 30px 50px 50px 50px;
   margin-bottom: 30px;
-  border-radius: 2rem;
+  border-radius: 0.5rem;
   background: #fff;
   box-shadow: 0px 0px 55px #e2e2e2;
   & form h3 {
@@ -26,7 +26,7 @@
 }
 
 @include media-breakpoint-down(sm) {
-  .auth-template {
+  .card-temp {
     width: 100%;
     margin: 0 auto;
   }
