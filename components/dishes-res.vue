@@ -21,15 +21,6 @@
                   <div class="fs-14">
                     макароны, помидор, специи и т.д.
                   </div>
-                  <!-- <div class="fs-14 pt-10">
-                    <button
-                      class="el-button "
-                      style="background: #222; border: none; color: #fff"
-                      @click="emitCalculate()"
-                    >
-                      подоробнее
-                    </button>
-                  </div> -->
                 </div>
               </div>
             </div>
@@ -70,15 +61,6 @@
                   <div class="fs-14">
                     макароны, помидор, специи и т.д.
                   </div>
-                  <!-- <div class="fs-14 pt-10">
-                    <button
-                      class="el-button "
-                      style="background: #222; border: none; color: #fff"
-                      @click="emitCalculate()"
-                    >
-                      подоробнее
-                    </button>
-                  </div> -->
                 </div>
               </div>
             </div>
@@ -119,15 +101,6 @@
                   <div class="fs-14">
                     макароны, помидор, специи и т.д.
                   </div>
-                  <!-- <div class="fs-14 pt-10">
-                    <button
-                      class="el-button "
-                      style="background: #222; border: none; color: #fff"
-                      @click="emitCalculate()"
-                    >
-                      подоробнее
-                    </button>
-                  </div> -->
                 </div>
               </div>
             </div>

@@ -2,14 +2,14 @@ export default {
   ssr: true,
 
   head: {
-    title: "CaloriesCalc - сайт по высчеслению каллорий",
+    title: "youcalories - сервис для расчета каллорий",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "robots", content: "index, follow" },
       {
         name: "description",
-        content: "CaloriesCalc - сайт по высчеслению каллорий."
+        content: "youcalories - сайт по для расчета суточной нормы каллорий."
       },
       {
         name: "keywords",

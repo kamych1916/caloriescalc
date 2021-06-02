@@ -23,17 +23,18 @@
     </div>
     <div class="row mt-10">
       <div class="col-lg my-10">
-        <el-input placeholder="Возраст" v-model="data.age"> </el-input>
+        <el-input type="number" placeholder="Возраст" v-model="data.age">
+        </el-input>
       </div>
       <div class="col-lg my-10">
-        <el-input placeholder="Вес" v-model="data.weight">
+        <el-input type="number" placeholder="Вес" v-model="data.weight">
           <span style="color: rgb(198, 85, 16)" slot="suffix">
             кг
           </span>
         </el-input>
       </div>
       <div class="col-lg my-10">
-        <el-input placeholder="Рост" v-model="data.height">
+        <el-input type="number" placeholder="Рост" v-model="data.height">
           <span style="color: rgb(198, 85, 16)" slot="suffix">
             см
           </span>
@@ -191,6 +192,7 @@ export default {
           fats: Math.trunc(fats),
           carbohydrates: Math.trunc(carbohydrates)
         };
+        localStorage.setItem("summaryCalories", Math.trunc(result));
         this.$emit("calculate", data);
       } else {
         NTFS.getInstance().NTFS(

@@ -62,9 +62,6 @@
         </div>
       </form>
     </div>
-    <!-- <button @click="submit()" class="mt-100">submit</button> -->
-    <!-- <button @click="signIn()" class="mt-100">signIn</button> -->
-    <!-- <button @click="signOut()" class="mt-100">signOut</button> -->
   </div>
 </template>
 
