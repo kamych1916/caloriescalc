@@ -29,7 +29,7 @@
           <div>
             <nuxt-link :to="'/account/' + this.uid">
               <div class="w-100 my-10" style="color: rgb(245, 125, 52)">
-                Личный кабинет
+                Дневник питания
               </div>
             </nuxt-link>
             <nuxt-link v-if="isAdmin" to="/account/admin">
