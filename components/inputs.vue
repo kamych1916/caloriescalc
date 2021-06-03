@@ -194,6 +194,7 @@ export default {
         };
         localStorage.setItem("summaryCalories", Math.trunc(result));
         this.$emit("calculate", data);
+        this.$emit("deal", this.data.picked_deal);
       } else {
         NTFS.getInstance().NTFS(
           "Информация",

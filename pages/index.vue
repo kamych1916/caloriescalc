@@ -29,7 +29,7 @@
             class="d-flex justify-content-center align-items-center py-20"
             style="min-height: 100vh; background-color: rgb(245, 125, 52)"
           >
-            <Inputs @calculate="calculate" />
+            <Inputs @calculate="calculate" @deal="whichDeal" />
           </div>
         </div>
       </slide-x-right-transition>
@@ -46,7 +46,7 @@
             >
               <div style="width:80%; height: fit-content" class=" pt-100 pb-50">
                 <CaloriesRes :calResData="calResData" />
-                <DishesRes />
+                <DishesRes :pickedDeal="pickedDeal" />
               </div>
             </div>
 
@@ -72,17 +72,18 @@ export default {
       titleBlock: true,
       answerBlock: false,
 
-      calResData: {}
+      calResData: {},
+      pickedDeal: null
     };
   },
   methods: {
+    whichDeal(data) {
+      this.pickedDeal = data;
+    },
     calculate(data) {
       this.titleBlock = false;
       this.answerBlock = true;
 
-      // getMeds("89GMS1wG4XmLkfyqsrCH").then(data => {
-      //   console.log(data);
-      // });
       this.calResData = data;
     }
   }
