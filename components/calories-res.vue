@@ -6,7 +6,7 @@
           <client-only>
             <animated-number
               :value="calResData.calories || 0"
-              :formatValue="formater"
+              :formatValue="formaterCalories"
               :duration="700"
             />
           </client-only>
@@ -137,17 +137,20 @@ export default {
       );
     },
     pProteins() {
-      return Math.trunc(100 * (this.calResData.proteins / this.sum));
+      return 100 * (this.calResData.proteins / this.sum);
     },
     pFats() {
-      return Math.trunc(100 * (this.calResData.fats / this.sum));
+      return 100 * (this.calResData.fats / this.sum);
     },
     pCarbohydrates() {
-      return Math.trunc(100 * (this.calResData.carbohydrates / this.sum));
+      return 100 * (this.calResData.carbohydrates / this.sum);
     }
   },
   methods: {
     formater(value) {
+      return Number(value).toFixed(1);
+    },
+    formaterCalories(value) {
       return Number(value).toFixed(0);
     }
   }

@@ -23,7 +23,15 @@
     </div>
     <div class="row mt-10">
       <div class="col-lg my-10">
-        <el-input type="number" placeholder="Возраст" v-model="data.age">
+        <el-input
+          type="number"
+          placeholder="Возраст"
+          @input="suffixAgeEvent()"
+          v-model="data.age"
+        >
+          <span style="color: rgb(198, 85, 16)" slot="suffix">
+            {{ suffixAge }}
+          </span>
         </el-input>
       </div>
       <div class="col-lg my-10">
@@ -149,10 +157,25 @@ export default {
         picked_gender: "",
         picked_deal: "",
         picked_activity: ""
-      }
+      },
+      suffixAge: null
     };
   },
+
   methods: {
+    suffixAgeEvent() {
+      if (!this.data.age) {
+        return "";
+      } else {
+        if (this.data.age == 1) {
+          this.suffixAge = "год";
+        } else if ((this.data.age > 1) & (this.data.age < 5)) {
+          this.suffixAge = "года";
+        } else {
+          this.suffixAge = "лет";
+        }
+      }
+    },
     emitCalculate() {
       if (
         this.data.age &&
@@ -163,6 +186,7 @@ export default {
         this.data.picked_activity
       ) {
         let result = 0;
+
         if (this.data.picked_gender == "male") {
           result =
             (10 * this.data.weight +
@@ -186,6 +210,7 @@ export default {
         let proteins = (result * 0.3) / 6.2;
         let fats = (result * 0.3) / 8;
         let carbohydrates = (result * 0.4) / 4;
+
         let data = {
           calories: Math.trunc(result),
           proteins: Math.trunc(proteins),
@@ -198,7 +223,7 @@ export default {
       } else {
         NTFS.getInstance().NTFS(
           "Информация",
-          "Для рассчета необходимо заполнить все поля",
+          "Для расчёта необходимо заполнить все поля",
           "warning"
         );
       }
