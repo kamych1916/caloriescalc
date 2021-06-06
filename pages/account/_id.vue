@@ -80,13 +80,17 @@
                   </div>
                   <div class="row">
                     <div class="col-lg-6 fs-14">
-                      Ккал: {{ item.kilocalories }}
+                      Ккал: {{ item.kilocalories.toFixed(1) }}
                     </div>
                     <div class="col-lg-6 fs-14">
-                      Углеводы: {{ item.carbohydrates }}
+                      Углеводы: {{ item.carbohydrates.toFixed(1) }}
                     </div>
-                    <div class="col-lg-6 fs-14">Жиры: {{ item.fats }}</div>
-                    <div class="col-lg-6 fs-14">Белки: {{ item.proteins }}</div>
+                    <div class="col-lg-6 fs-14">
+                      Жиры: {{ item.fats.toFixed(1) }}
+                    </div>
+                    <div class="col-lg-6 fs-14">
+                      Белки: {{ item.proteins.toFixed(1) }}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -97,10 +101,7 @@
 
       <div class="row">
         <div class="col-lg-4">
-          <div
-            class="card-temp my-20 pt-0 px-0 pb-0 w-100 sticky"
-            style="max-height: 535px"
-          >
+          <div class="card-temp my-20 pt-0 px-0 pb-0 w-100 sticky">
             <div
               class="w-100  p-14"
               style="background-color: rgb(245, 125, 52); border-radius: 8px 8px 0px 0px"
@@ -406,18 +407,21 @@ export default {
       }
 
       this.storeProducts = JSON.parse(localStorage.getItem("productItem"));
+
       for (let ids in this.storeProducts) {
-        this.productKilokal =
-          Number(this.productKilokal) +
-          Number(this.storeProducts[ids].kilocalories);
-        this.productFats =
-          Number(this.productFats) + Number(this.storeProducts[ids].fats);
-        this.productCarbohydrates =
-          Number(this.productCarbohydrates) +
-          Number(this.storeProducts[ids].carbohydrates);
-        this.productProteins =
-          Number(this.productProteins) +
-          Number(this.storeProducts[ids].proteins);
+        if (this.storeProducts[ids].title == productItem.title) {
+          this.productKilokal =
+            Number(this.productKilokal) +
+            Number(this.storeProducts[ids].kilocalories);
+          this.productFats =
+            Number(this.productFats) + Number(this.storeProducts[ids].fats);
+          this.productCarbohydrates =
+            Number(this.productCarbohydrates) +
+            Number(this.storeProducts[ids].carbohydrates);
+          this.productProteins =
+            Number(this.productProteins) +
+            Number(this.storeProducts[ids].proteins);
+        }
       }
       this.enterCalories = null;
       this.$refs.isEnterCalroies.scrollIntoView({ behavior: "smooth" });
